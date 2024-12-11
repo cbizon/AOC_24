@@ -1,7 +1,14 @@
+# The story leads you astray with this line business.  The order
+# doesn't matter. So use a dict to cut down on repeated calculations
+
+from collections import defaultdict
+
 def read_input(infile):
+    input = defaultdict(int)
     with open(infile) as f:
-        line = f.readline()
-        input = [int(i) for i in line.strip().split()]
+        line = f.readline().strip().split()
+        for i in line:
+            input[int(i)] += 1
     return input
 
 def update_stone(input_stone):
@@ -14,9 +21,10 @@ def update_stone(input_stone):
     return [ 2024 * input_stone ]
 
 def update(stones):
-    newstones = []
-    for stone in stones:
-        newstones += update_stone(stone)
+    newstones = defaultdict(int)
+    for oldstone,oldstonecount in stones.items():
+        for stone in update_stone(oldstone):
+            newstones[stone] += oldstonecount
     return newstones
 
 def go(num_iter=25):
@@ -24,10 +32,10 @@ def go(num_iter=25):
     print(input)
     for i in range(num_iter):
         stones = update(stones)
-        print(i, len(stones))
+        print(i, sum(stones.values()))
 
 if __name__ == "__main__":
     #part 1
-    go(25)
+    #go(25)
     #part 2 - doesn't work, too slow
-    #go(75)
+    go(75)

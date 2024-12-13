@@ -5,13 +5,13 @@ class Problem:
         self.c_ay = c_ay
         self.c_bx = c_bx
         self.c_by = c_by
-        self.p_x = p_x
-        self.p_y = p_y
+        self.p_x = p_x + 10000000000000
+        self.p_y = p_y + 10000000000000
     def solve(self):
         self.na = (self.c_by * self.p_x - self.c_bx * self.p_y) / (self.c_ax * self.c_by - self.c_ay * self.c_bx)
         self.nb = ( self.p_y - self.c_ay * self.na ) / (self.c_by)
         #now, there are some constraints we want - only integer solutions between 0 and 100
-        if self.na < 0 or self.na> 100 or self.nb < 0 or self.nb > 100:
+        if self.na < 0 or self.nb < 0:
             return None,None
         dec_a = self.na % 1
         dec_b = self.nb % 1

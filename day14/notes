@@ -1,0 +1,16 @@
+vertical
+7
+108 (hm)
+209
+
+horizontal
+53
+156 (double hm)
+
+OK. so.
+
+The vertical is coming together on 7 + 101*x, x = 0,1,2,3
+The horizontal is coming together on 53 + 103*y, y = 0,1,2,3
+
+so 7+101x = 53+103y
+46 = 101x - 103y

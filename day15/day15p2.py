@@ -1,4 +1,12 @@
-#This is not particularly good, but it does work.
+#This is not particularly good, but it does work. The idea is quite similar to day 1 - we move the robot
+# and it hits other objects and tries to move them. If they can't move then they report back up the chain.
+# the difference here is that you can have cases where one block can push on two blocks, and one of those hits a wall
+# and the other doesn't.  So you can't have the blocks move yet, because we need to aggregate that information back
+# all the way up, and then pass it back down.
+
+# So the plan - push, collect provisional movements, aggregate back up at the robot, and then push back down
+# a signal saying whether to implement or flush the provisional movement
+
 import numpy as np
 
 class Obstacle:

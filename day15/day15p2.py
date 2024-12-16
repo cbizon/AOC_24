@@ -131,17 +131,18 @@ def go():
     for step in directions:
         nobj = len(objects)
         moved = robot.push(step,objects)
-        if moved:
-            robot.update(True,objects)
-        else:
-            robot.update(False, objects)
+        robot.update(moved,objects)
+
+        #For debugging
         #print(robot.positions)
         #draw_thing(objects, robot)
+
         #This bit of code is to catch the kinds of errors that I was having
         if not len(objects) == nobj:
             print(f"there should be {nobj} but instead are {len(objects)}")
             print(len(objects))
             break
+
     total = 0
     for o in objects.values():
         total += o.score()
